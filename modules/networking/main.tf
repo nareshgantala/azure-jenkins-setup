@@ -17,3 +17,8 @@ resource "azurerm_network_interface" "jenkins_nic" {
     public_ip_address_id = azurerm_public_ip.jenkins_ip.id
   }
 }
+
+resource "azurerm_network_interface_security_group_association" "example" {
+  network_interface_id      = azurerm_network_interface.jenkins_nic.id
+  network_security_group_id = data.azurerm_network_security_group.allow-all.id
+}
